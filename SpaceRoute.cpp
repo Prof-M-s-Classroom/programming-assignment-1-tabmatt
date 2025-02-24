@@ -37,6 +37,9 @@ private:
 public:
     SpaceRoute() {};  // Constructor
     ~SpaceRoute() {
+        if (length == 0) {
+            return;
+        }
         Node<T> *temp = head;
         while (head != nullptr) {
             head = head -> next;
@@ -80,6 +83,7 @@ public:
 
         if (index == 0) {
             addWaypointAtBeginning(data);
+            return;
         }
 
         if (index == length - 1) {
@@ -130,12 +134,30 @@ public:
 
 
     };
-    void traverseForward();
-    void traverseBackward();
+    void traverseForward() {
+        print();
+    };
+
+    void traverseBackward() {
+        Node<T>* current = tail;
+        while (current) {
+            current->print();
+            current = current->prev;
+        }
+        cout << endl;
+    };
     Node<T>* getWaypoint(int index) {
         if (index < 0 || index >= length) {
             cout << "Index is invalid" << endl;
             return nullptr;
+        }
+
+        if (index == 0) {
+            return head;
+        }
+
+        if (index == length - 1) {
+            return tail;
         }
 
         Node<T> *temp = head;
@@ -145,6 +167,17 @@ public:
         return temp;
     }
     void setWaypoint(int index, T& data) {
+        if (index == 0) {
+            addWaypointAtBeginning(data);
+            removeWaypointAtIndex(index + 1);
+            return;
+        }
+
+        if (index == length - 1) {
+            addWaypointAtEnd(data);
+            removeWaypointAtIndex(index - 1);
+            return;
+        }
         Node<T> *temp = getWaypoint(index);
         //checks to see if that index exists within the list
         if (!temp) {

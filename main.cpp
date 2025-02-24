@@ -10,6 +10,7 @@ int main() {
     string saturn = "Saturn";
     string earth = "Earth";
     string venus = "Venus";
+    string uranus = "uranus";
 
     SpaceRoute<string> voyagerRoute;
 
@@ -18,20 +19,19 @@ int main() {
     voyagerRoute.addWaypointAtEnd(saturn);
     voyagerRoute.addWaypointAtBeginning(earth);
     voyagerRoute.addWaypointAtIndex(2, venus);
-    voyagerRoute.removeWaypointAtIndex(2);
 
-    // cout << "Voyager Route (Forward):\n";
-    // voyagerRoute.traverseForward();
+    cout << "Voyager Route (Forward):\n";
+    voyagerRoute.traverseForward();
     //
-    // cout << "\nVoyager Route (Backward):\n";
-    // voyagerRoute.traverseBackward();
-    //
-    // cout << "\nPrinting Route: \n";
-    // voyagerRoute.print();
-    //
-    // voyagerRoute.removeWaypointAtIndex(2);
-    // cout << "\nAfter Removing Venus: \n";
-    // voyagerRoute.print();
+    cout << "\nVoyager Route (Backward):\n";
+    voyagerRoute.traverseBackward();
+
+    cout << "\nPrinting Route: \n";
+    voyagerRoute.print();
+
+    voyagerRoute.removeWaypointAtIndex(2);
+    cout << "\nAfter Removing Venus: \n";
+    voyagerRoute.print();
 
     return 0;
 }
